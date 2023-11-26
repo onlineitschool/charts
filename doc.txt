@@ -1,0 +1,20 @@
+curl -sfL https://get.k3s.io | sh -s - --disable traefik
+
+cat /etc/rancher/k3s/k3s.yaml
+
+kubectl create namespace argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+cp k3s.yaml ~/.kube/config
+
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
+
+172.232.194.222:31501
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
+admin
+tvKl0Z3lv7RV61X7
+
+ssh-keygen -t rsa -b 4096 -f id_rsa
