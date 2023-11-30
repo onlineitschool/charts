@@ -1,0 +1,10 @@
+
+prefix: user1
+appname: appdemo1
+
+
+image: httpd:2.4
+
+replicas: 2
+
+port: 80

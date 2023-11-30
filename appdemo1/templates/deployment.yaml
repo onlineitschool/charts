@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-{{ .Values.prefix }}-{{ .Values.appname }}
+  name: {{ .Values.prefix }}-{{ .Values.appname }}
+  labels:
+    app: app-{{ .Values.prefix }}-{{ .Values.appname }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: app-{{ .Values.prefix }}-{{ .Values.appname }}
+  template:
+    metadata:
+      labels:
+        app: app-{{ .Values.prefix }}-{{ .Values.appname }}
+    spec:
+      containers:
+      - name: cnt1
+        image: {{ .Values.image }}
+        ports:
+        - containerPort: {{ .Values.port }}
