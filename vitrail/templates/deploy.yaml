@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vitrail
+  labels:
+    app: vitrail
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: vitrail
+  template:
+    metadata:
+      labels:
+        app: vitrail
+    spec:
+      containers:
+      - name: cnt1
+        image: leshkin/vitrail:beta0711
+        ports:
+        - containerPort: 8080
